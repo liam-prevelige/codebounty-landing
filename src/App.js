@@ -13,6 +13,12 @@ function App() {
     e.preventDefault();
     setEmail('');
     setSubmitted(true);
+
+    // Send an event to Google Analytics
+    ReactGA.event({
+      category: 'Sign Up',
+      action: 'User signed up for beta notifications',
+    });
   }
 
   useEffect(() => {
