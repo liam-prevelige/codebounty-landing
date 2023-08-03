@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ReactGA from 'react-ga4';
 import './App.css';
+import { addSignupEmail } from './api';
 
 function App() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  ReactGA.initialize('G-04BBSZD7EW');
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID);
   ReactGA.send("pageview");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(email);
+    await addSignupEmail(email);
     setEmail('');
     setSubmitted(true);
 
